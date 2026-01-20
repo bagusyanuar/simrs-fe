@@ -1,0 +1,4 @@
+export * from './hospital-installation'
+export * from './hospital-unit'
+export * from './job-department'
+export * from './job-position'
