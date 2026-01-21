@@ -13,10 +13,10 @@ export interface MetaPagination {
   total_rows: number;
 }
 
-export interface APIError<T> {
+export interface APIError {
   message: string;
   error: {
     code: number;
-    details: T;
+    details: unknown;
   };
 }

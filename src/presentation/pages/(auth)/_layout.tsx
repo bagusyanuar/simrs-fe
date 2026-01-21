@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom'
 
 export default function AppLayout() {
     return (
-        <main className='w-full h-dvh'>
+        <main className='w-full h-dvh bg-teal-500'>
             <Outlet />
         </main>
     );

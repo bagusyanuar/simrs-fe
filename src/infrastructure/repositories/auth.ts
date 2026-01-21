@@ -3,23 +3,29 @@ import { Auth } from '@/core/models/auth';
 import type { LoginRequest } from '@/core/schemas/requests/auth';
 import api from '@/infrastructure/sources/api/api';
 import type { APIResponse, LoginResponseDTO } from '@/infrastructure/dto';
+import { handleApiError } from '@/infrastructure/utils/error-handler';
 
 export class ApiAuthRepository implements AuthRepository {
   async login(credentials: LoginRequest, signal?: AbortSignal): Promise<Auth> {
-    const { data } = await api.post<APIResponse<LoginResponseDTO>>(
-      '/auth/login',
-      { credentials, signal }
-    );
-    return new Auth({
-      accessToken: data.data?.access_token,
-      refreshToken: data.data?.refresh_token,
-      user: {
-        email: data.data?.user.email,
-        id: data.data?.user.id,
-        role: data.data?.user.role,
-        username: data.data?.user.username,
-      },
-    });
+    try {
+      const { data } = await api.post<APIResponse<LoginResponseDTO>>(
+        '/auth/login',
+        credentials,
+        { signal }
+      );
+      return new Auth({
+        accessToken: data.data?.access_token,
+        refreshToken: data.data?.refresh_token,
+        user: {
+          email: data.data?.user.email,
+          id: data.data?.user.id,
+          role: data.data?.user.role,
+          username: data.data?.user.username,
+        },
+      });
+    } catch (error) {
+      handleApiError(error);
+    }
   }
   logout(): Promise<void> {
     throw new Error('Method not implemented.');
