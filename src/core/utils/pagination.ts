@@ -7,5 +7,5 @@ export interface PaginatedResult<T> {
 
 export interface QueryPagination {
   page?: number;
-  pageSize?: number;
+  perPage?: number;
 }
