@@ -4,6 +4,7 @@ import type { LoginRequest } from '@/core/schemas/requests';
 import api from '@/infrastructure/sources/api/api';
 import type { APIResponse, LoginResponseDTO } from '@/infrastructure/dto';
 import { handleApiError } from '@/infrastructure/utils/error-handler';
+import { AuthMapper } from '@/infrastructure/mappers';
 
 export class ApiAuthRepository implements AuthRepository {
   async login(credentials: LoginRequest, signal?: AbortSignal): Promise<Auth> {
@@ -13,16 +14,11 @@ export class ApiAuthRepository implements AuthRepository {
         credentials,
         { signal }
       );
-      return new Auth({
-        accessToken: data.data?.access_token,
-        refreshToken: data.data?.refresh_token,
-        user: {
-          email: data.data?.user.email,
-          id: data.data?.user.id,
-          role: data.data?.user.role,
-          username: data.data?.user.username,
-        },
-      });
+      const dto = data.data;
+      if (!dto) {
+        throw new Error("Data login tidak ditemukan dalam response API");
+      }
+      return AuthMapper.toEntity(dto);
     } catch (error) {
       handleApiError(error);
     }
