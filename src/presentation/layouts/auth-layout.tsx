@@ -1,9 +1,9 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router-dom';
 
 export default function AuthLayout() {
-    return (
-        <main className='w-full h-dvh bg-teal-500'>
-            <Outlet />
-        </main>
-    );
+  return (
+    <main className="w-full h-dvh flex items-center justify-center">
+      <Outlet />
+    </main>
+  );
 }
