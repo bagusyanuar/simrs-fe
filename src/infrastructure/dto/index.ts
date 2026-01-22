@@ -1,2 +1,2 @@
-export * from './api-response';
-export * from './auth';
+export * from './api-response.dto';
+export * from './auth.dto';

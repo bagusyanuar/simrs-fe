@@ -1,5 +1,5 @@
-import type { Auth } from '../models/auth';
-import type { LoginRequest } from '../schemas/requests/auth';
+import type { Auth } from '@/core/models';
+import type { LoginRequest } from '@/core/schemas/requests';
 
 export interface AuthRepository {
   login(credentials: LoginRequest, signal?: AbortSignal): Promise<Auth>;

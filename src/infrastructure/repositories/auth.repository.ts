@@ -1,6 +1,6 @@
-import type { AuthRepository } from '@/core/interfaces/auth';
-import { Auth } from '@/core/models/auth';
-import type { LoginRequest } from '@/core/schemas/requests/auth';
+import type { AuthRepository } from '@/core/interfaces';
+import { Auth } from '@/core/models';
+import type { LoginRequest } from '@/core/schemas/requests';
 import api from '@/infrastructure/sources/api/api';
 import type { APIResponse, LoginResponseDTO } from '@/infrastructure/dto';
 import { handleApiError } from '@/infrastructure/utils/error-handler';

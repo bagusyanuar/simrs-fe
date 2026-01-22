@@ -1,1 +1,2 @@
-export type * from './hospital-installation'
+export type * from './auth.interface'
+export type * from './hospital-installation.interface'

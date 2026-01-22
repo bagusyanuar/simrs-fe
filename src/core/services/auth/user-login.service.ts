@@ -1,8 +1,8 @@
-import type { AuthRepository } from '@/core/interfaces/auth';
-import type { Auth } from '@/core/models/auth';
-import type { LoginRequest } from '@/core/schemas/requests/auth';
+import type { AuthRepository } from '@/core/interfaces';
+import type { Auth } from '@/core/models';
+import type { LoginRequest } from '@/core/schemas/requests';
 
-export class UserLogin {
+export class UserLoginService {
   private readonly repo: AuthRepository;
   constructor(repo: AuthRepository) {
     this.repo = repo;
