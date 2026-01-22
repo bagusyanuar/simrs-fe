@@ -1,7 +1,3 @@
 export default function LoginPage() {
-    return (
-        <section>
-            Login Page test
-        </section>
-    );
+  return <section>Login Page test</section>;
 }

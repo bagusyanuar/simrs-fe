@@ -15,9 +15,7 @@ export class ApiAuthRepository implements AuthRepository {
         { signal }
       );
       const dto = data.data;
-      if (!dto) {
-        throw new Error("Data login tidak ditemukan dalam response API");
-      }
+      if (!dto) throw new Error("cannot transfer to entity");
       return AuthMapper.toEntity(dto);
     } catch (error) {
       handleApiError(error);
