@@ -1,35 +1,75 @@
-import IllustrationPanel from './components/IllustrationPanel';
-import Background from './components/Background';
-
 export default function LoginPage() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center p-4 sm:p-6 md:p-10 selection:bg-[oklch(0.8_0.1_183)]">
-      <Background />
-      <main className="relative w-full max-w-6xl min-h-[700px] grid grid-cols-1 lg:grid-cols-2 bg-white rounded-[2.5rem] shadow-[0_32px_64px_-12px_rgba(0,0,0,0.1)] border border-white/50 overflow-hidden">
-        {/* Left Panel: Branding & Illustration */}
-        <section className="relative hidden lg:flex flex-col bg-gradient-to-br from-[oklch(0.7_0.12_183)] to-[oklch(0.5_0.1_183)]">
-          {/* Logo overlay */}
-          <div className="absolute top-10 left-10 z-20">
-            {/* <Logo variant="white" /> */}
+    <section className="w-full h-dvh flex items-center justify-center bg-primary-50">
+      <div className="w-3xl h-120 bg-white rounded-2xl shadow-2xl grid grid-cols-2 border border-white/50 overflow-hidden">
+        <section className="relative py-8 px-12 flex flex-col bg-linear-to-br from-primary-500 to-primary-800">
+          {/* title */}
+          <div className="flex items-center gap-1.5 mb-3">
+            <div className="w-8 h-8 rounded-full bg-white/70"></div>
+            <span className="text-white text-md font-black tracking-tight">
+              MEDIFLOW
+            </span>
           </div>
-
-          {/* Content Wrapper */}
-          <div className="flex-1 flex flex-col justify-center px-16 pt-20">
-            <div className="mb-10 animate-in slide-in-from-left duration-700">
-              <h1 className="text-5xl font-black text-white leading-tight">
+          <div className="flex-1 flex flex-col">
+            <div className="mb-1">
+              <h1 className="text-xl font-black text-white leading-tight">
                 Health Care <br />
-                <span className="text-white/70 font-light">Refined.</span>
+                <span className="text-white/70 font-light text-lg">
+                  Refined.
+                </span>
               </h1>
-              <div className="h-1.5 w-20 bg-white/30 rounded-full mt-6" />
+              <div className="h-1 w-20 bg-white/30 rounded-full mt-2" />
             </div>
-
-            <div className="flex-1 flex items-center justify-center scale-110">
-              <IllustrationPanel />
+            <div className="flex-1 flex items-center justify-center">
+              <div className="relative w-full h-full flex items-center justify-center px-4 overflow-hidden">
+                <div className="relative z-10 w-full max-w-sm">
+                  <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-lg p-4 shadow-lg space-y-3 transform hover:scale-[1.02] transition-transform duration-500">
+                    {/* head */}
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center">
+                        <div className="w-3.5 h-3.5 border-2 border-white/60 rounded-full border-t-transparent animate-spin" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="h-1.5 w-16 bg-white/40 rounded-full mb-2" />
+                        <div className="h-1 w-10 bg-white/20 rounded-full" />
+                      </div>
+                    </div>
+                    {/* chart */}
+                    <div className="h-24 flex items-end gap-2 px-2">
+                      {[40, 70, 45, 90, 65, 80, 50, 30, 25].map((h, i) => (
+                        <div
+                          key={i}
+                          className="flex-1 bg-white/30 rounded-t-lg transition-all duration-1000"
+                          style={{ height: `${h}%`, opacity: 0.4 + i * 0.1 }}
+                        />
+                      ))}
+                    </div>
+                    {/* footer */}
+                    <div className="grid grid-cols-2 gap-2">
+                      <div className="p-1.5 rounded-lg bg-white/5 border border-white/10">
+                        <div className="h-1 w-12 bg-white/30 rounded-full mb-1" />
+                        <div className="h-2 w-16 bg-white/60 rounded-full" />
+                      </div>
+                      <div className="p-1.5 rounded-lg bg-white/5 border border-white/10">
+                        <div className="h-1 w-12 bg-white/30 rounded-full mb-1" />
+                        <div className="h-2 w-16 bg-white/60 rounded-full" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="absolute -top-2 -right-3 bg-white/20 backdrop-blur-lg border border-white/30 rounded-lg p-2.5 shadow-xl animate-bounce">
+                    <div className="flex items-center gap-2">
+                      <div className="w-3 h-3 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+                      <span className="text-[0.5rem] font-bold text-white uppercase tracking-wider">
+                        Systems Online
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-
-            <div className="pb-10 mt-auto text-white/60 text-sm font-medium">
-              <p>Trusted by premier medical institutions across the globe.</p>
-              <div className="flex gap-4 mt-2">
+            <div className="text-white/60 text-xs font-medium mt-auto">
+              <p>Trusted by premier medical institutions</p>
+              <div className="flex gap-4 mt-1">
                 <span className="opacity-50 hover:opacity-100 transition-opacity cursor-default">
                   • HIPAA Compliant
                 </span>
@@ -39,73 +79,13 @@ export default function LoginPage() {
               </div>
             </div>
           </div>
-        </section>
-
-        {/* Right Panel: Login Interface */}
-        <section className="flex flex-col bg-white p-8 sm:p-12 md:p-16 lg:p-20 overflow-y-auto">
-          {/* Mobile Branding */}
-          <div className="lg:hidden mb-12 flex justify-between items-center">
-            {/* <Logo variant="primary" /> */}
-            <span className="text-[10px] font-bold px-2 py-1 bg-slate-100 rounded-md text-slate-500 uppercase tracking-widest">
-              Secure Access
-            </span>
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] h-[70%] border border-white/5 rounded-full rotate-45" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[35%] h-[35%] border border-white/10 rounded-full -rotate-12" />
           </div>
-
-          <div className="max-w-md mx-auto w-full flex-1 flex flex-col justify-center">
-            <header className="mb-10">
-              <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">
-                Portal Sign-in
-              </h2>
-              <p className="text-slate-500 mt-3 text-lg">
-                Enter your organizational credentials to continue.
-              </p>
-            </header>
-
-            {/* Enhanced Role Selector */}
-            {/* <nav className="flex bg-slate-50 p-1.5 rounded-2xl mb-10 border border-slate-100 shadow-sm">
-              {Object.values(UserRole).map((role) => (
-                <button
-                  key={role}
-                  onClick={() => setSelectedRole(role)}
-                  className={`flex-1 py-3 text-[11px] font-bold uppercase tracking-wider rounded-xl transition-all duration-300 ${
-                    selectedRole === role
-                      ? 'bg-white text-[oklch(0.6_0.11_183)] shadow-md ring-1 ring-black/[0.02]'
-                      : 'text-slate-400 hover:text-slate-600 hover:bg-slate-100/50'
-                  }`}
-                >
-                  {role}
-                </button>
-              ))}
-            </nav> */}
-
-            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-              {/* <LoginForm role={selectedRole} /> */}
-            </div>
-          </div>
-
-          {/* Footer Info */}
-          <footer className="mt-12 pt-10 border-t border-slate-50 flex flex-col sm:flex-row justify-between items-center gap-6 text-[12px] font-medium text-slate-400">
-            <div className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-              <span>Network Status: Stable</span>
-            </div>
-            <div className="flex gap-6 uppercase tracking-widest">
-              <a
-                href="#"
-                className="hover:text-[oklch(0.6_0.11_183)] transition-colors"
-              >
-                Privacy
-              </a>
-              <a
-                href="#"
-                className="hover:text-[oklch(0.6_0.11_183)] transition-colors"
-              >
-                Help Desk
-              </a>
-            </div>
-          </footer>
         </section>
-      </main>
+        <section></section>
+      </div>
     </section>
   );
 }
