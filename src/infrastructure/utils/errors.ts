@@ -1,6 +1,16 @@
 import axios from 'axios';
 import type { APIError } from '@/infrastructure/dto';
-import { AppError } from '@/core/utils/app-error';
+
+export class AppError extends Error {
+  readonly code: number;
+  readonly details?: unknown;
+  constructor(message: string, code: number, details?: unknown) {
+    super(message);
+    this.name = 'AppError';
+    this.code = code;
+    this.details = details;
+  }
+}
 
 export function handleApiError(error: unknown): never {
   if (axios.isAxiosError(error) && error.response) {

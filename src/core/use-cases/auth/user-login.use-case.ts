@@ -1,14 +1,14 @@
-import type { AuthRepository } from '@/core/interfaces';
-import type { Auth } from '@/core/models';
+import type { AuthRepository } from '@/core/repositories';
 import type { LoginRequest } from '@/core/schemas/requests';
+import { AuthEntity } from '@/core/entities';
 
-export class UserLoginService {
+export class UserLoginUseCase {
   private readonly repo: AuthRepository;
   constructor(repo: AuthRepository) {
     this.repo = repo;
   }
 
-  async execute(credentials: LoginRequest): Promise<Auth> {
+  async execute(credentials: LoginRequest): Promise<AuthEntity> {
     const authData = await this.repo.login(credentials);
     this.repo.saveSession(authData);
     return authData;

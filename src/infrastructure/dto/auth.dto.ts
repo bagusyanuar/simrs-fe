@@ -8,3 +8,7 @@ export interface LoginResponseDTO {
     role: string[];
   };
 }
+
+export interface RefreshTokenDTO {
+  access_token: string;
+}

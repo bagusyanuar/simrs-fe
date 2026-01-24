@@ -1,37 +1,35 @@
-import type { AuthRepository } from '@/core/interfaces';
-import { Auth } from '@/core/models';
+import type { AuthRepository } from '@/core/repositories';
 import type { LoginRequest } from '@/core/schemas/requests';
+import { AuthEntity } from '@/core/entities';
 import api from '@/infrastructure/sources/api/api';
 import type { APIResponse, LoginResponseDTO } from '@/infrastructure/dto';
-import { handleApiError } from '@/infrastructure/utils/error-handler';
 import { AuthMapper } from '@/infrastructure/mappers';
+import { handleApiError } from '@/infrastructure/utils/errors';
+import { BrowserStorage, STORAGE_KEYS } from '@/infrastructure/sources/storage';
 
 export class ApiAuthRepository implements AuthRepository {
-  async login(credentials: LoginRequest, signal?: AbortSignal): Promise<Auth> {
+  async login(
+    credentials: LoginRequest,
+    signal?: AbortSignal
+  ): Promise<AuthEntity> {
     try {
-      const { data } = await api.post<APIResponse<LoginResponseDTO>>(
+      const response = await api.post<APIResponse<LoginResponseDTO>>(
         '/auth/login',
         credentials,
         { signal }
       );
-      const dto = data.data;
-      if (!dto) throw new Error("cannot transfer to entity");
+      const dto = response.data.data as LoginResponseDTO | undefined;
+      if (!dto) throw new Error('login response is undefined');
       return AuthMapper.toEntity(dto);
     } catch (error) {
       handleApiError(error);
     }
   }
-  logout(): Promise<void> {
-    throw new Error('Method not implemented.');
-  }
-  saveSession(auth: Auth): void {
-    console.log(auth);
-    throw new Error('Method not implemented.');
-  }
-  getSession(): Auth | null {
-    throw new Error('Method not implemented.');
-  }
-  clearSession(): void {
-    throw new Error('Method not implemented.');
+  saveSession(authData: AuthEntity): void {
+    BrowserStorage.set<string>(STORAGE_KEYS.ACCESS_TOKEN, authData.accessToken);
+    BrowserStorage.set<string>(
+      STORAGE_KEYS.REFRESH_TOKEN,
+      authData.refreshToken
+    );
   }
 }

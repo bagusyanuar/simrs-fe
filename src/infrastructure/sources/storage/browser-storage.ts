@@ -1,12 +1,18 @@
+import { STORAGE_KEYS } from './storage.keys';
+
+type StorageKey = (typeof STORAGE_KEYS)[keyof typeof STORAGE_KEYS];
+
 export class BrowserStorage {
-  static set<T>(key: string, value: T): void {
+  static set<T>(key: StorageKey, value: T): void {
     try {
       const serializedValue = JSON.stringify(value);
       localStorage.setItem(key, serializedValue);
-    } catch { /* empty */ }
+    } catch {
+      /* empty */
+    }
   }
 
-  static get<T>(key: string): T | null {
+  static get<T>(key: StorageKey): T | null {
     const data = localStorage.getItem(key);
     if (!data) return null;
     try {
@@ -16,7 +22,7 @@ export class BrowserStorage {
     }
   }
 
-  static remove(key: string): void {
+  static remove(key: StorageKey): void {
     localStorage.removeItem(key);
   }
 }

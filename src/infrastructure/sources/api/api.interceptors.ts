@@ -2,12 +2,12 @@ import axios, {
   AxiosError,
   type InternalAxiosRequestConfig,
   type AxiosResponse,
-} from "axios";
-import { type AxiosInterceptors } from "./api.provider";
-import { type RefreshTokenResponse } from "./types";
+} from 'axios';
+import { type AxiosInterceptors } from './api.provider';
+import type { RefreshTokenDTO } from '@/infrastructure/dto';
+import { BrowserStorage, STORAGE_KEYS } from '@/infrastructure/sources/storage';
 
-// Menambahkan properti _retry ke interface Axios agar tidak error
-declare module "axios" {
+declare module 'axios' {
   export interface InternalAxiosRequestConfig {
     _retry?: boolean;
   }
@@ -15,7 +15,7 @@ declare module "axios" {
 
 export const mainInterceptors: AxiosInterceptors = {
   onRequest: (config: InternalAxiosRequestConfig) => {
-    const token = localStorage.getItem("access_token");
+    const token = BrowserStorage.get<string>(STORAGE_KEYS.ACCESS_TOKEN);
     if (token && config.headers) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -26,7 +26,6 @@ export const mainInterceptors: AxiosInterceptors = {
   onResponseError: async (error: AxiosError) => {
     const originalRequest = error.config;
 
-    // Sekarang originalRequest._retry sudah dikenali oleh TypeScript
     if (
       error.response?.status === 401 &&
       originalRequest &&
@@ -35,24 +34,28 @@ export const mainInterceptors: AxiosInterceptors = {
       originalRequest._retry = true;
 
       try {
-        const refreshToken = localStorage.getItem("refresh_token");
+        const refreshToken = BrowserStorage.get<string>(
+          STORAGE_KEYS.REFRESH_TOKEN
+        );
 
-        const { data } = await axios.post<RefreshTokenResponse>(
+        const { data } = await axios.post<RefreshTokenDTO>(
           `${import.meta.env.VITE_API_URL}/auth/refresh`,
           { refresh_token: refreshToken }
         );
 
-        localStorage.setItem("access_token", data.accessToken);
+        BrowserStorage.set<string>(
+          STORAGE_KEYS.ACCESS_TOKEN,
+          data.access_token
+        );
 
         if (originalRequest.headers) {
-          originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
+          originalRequest.headers.Authorization = `Bearer ${data.access_token}`;
         }
 
-        // Jalankan ulang request yang gagal dengan token baru
         return axios(originalRequest);
       } catch (refreshError) {
         localStorage.clear();
-        window.location.href = "/login";
+        window.location.href = '/login';
         return Promise.reject(refreshError);
       }
     }
