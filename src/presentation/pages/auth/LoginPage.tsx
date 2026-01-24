@@ -1,14 +1,10 @@
-import { Button } from '@/presentation/components/ui/button';
-import { Card } from '@/presentation/components/ui/card';
 import IllustrationPanel from './components/IllustrationPanel';
 import Background from './components/Background';
 
 export default function LoginPage() {
   return (
-    <section>
-      <div className="relative min-h-screen flex items-center justify-center p-4 sm:p-6 md:p-10 selection:bg-[oklch(0.8_0.1_183)]">
-        <Background />
-      </div>
+    <section className="relative min-h-screen flex items-center justify-center p-4 sm:p-6 md:p-10 selection:bg-[oklch(0.8_0.1_183)]">
+      <Background />
       <main className="relative w-full max-w-6xl min-h-[700px] grid grid-cols-1 lg:grid-cols-2 bg-white rounded-[2.5rem] shadow-[0_32px_64px_-12px_rgba(0,0,0,0.1)] border border-white/50 overflow-hidden">
         {/* Left Panel: Branding & Illustration */}
         <section className="relative hidden lg:flex flex-col bg-gradient-to-br from-[oklch(0.7_0.12_183)] to-[oklch(0.5_0.1_183)]">
