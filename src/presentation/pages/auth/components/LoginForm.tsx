@@ -1,6 +1,7 @@
 import React from 'react';
-import { LuMail } from 'react-icons/lu';
+import { LuMail, LuLock } from 'react-icons/lu';
 import { Textfield } from '@/presentation/components/ui/textfield';
+import { Passwordfield } from '@/presentation/components/ui/passwordfield';
 
 const LoginForm: React.FC = () => {
   return (
@@ -15,13 +16,28 @@ const LoginForm: React.FC = () => {
           </p>
         </header>
       </div>
-      <div className="flex-1 flex flex-col justify-center">
-        <div className="space-y-1">
+      <div className="flex-1 flex flex-col justify-center gap-3.5">
+        <div className="space-y-1.5">
           <label className="text-xs font-semibold text-slate-500 flex items-center gap-1">
             <LuMail size={14} />
             <span>Email</span>
           </label>
-          <Textfield />
+          <Textfield placeholder="Email or Staff ID" />
+        </div>
+        <div className="space-y-1.5">
+          <div className="flex items-center justify-between">
+            <label className="text-xs font-semibold text-slate-500 flex items-center gap-1">
+              <LuLock size={14} />
+              <span>Secure Password</span>
+            </label>
+            <a
+              href="#"
+              className="text-xs font-semibold text-primary-500 hover:text-primary-700 transition-colors ease-in-out duration-300"
+            >
+              Forgot?
+            </a>
+          </div>
+          <Passwordfield placeholder="Password" />
         </div>
       </div>
     </section>

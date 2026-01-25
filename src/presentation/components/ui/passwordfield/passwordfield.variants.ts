@@ -31,16 +31,12 @@ export const inputVariant = cva(
   {
     variants: {
       size: {
-        large: 'text-md py-3',
-        normal: 'text-sm py-2',
-        small: 'text-xs py-1.5',
+        large: 'text-md py-3 pe-0',
+        normal: 'text-sm py-2 pe-0',
+        small: 'text-xs py-1.5 pe-0',
       },
       hasPrefixIcon: {
         true: 'ps-0',
-        false: '',
-      },
-      hasSuffixIcon: {
-        true: 'pe-0',
         false: '',
       },
     },
@@ -48,15 +44,10 @@ export const inputVariant = cva(
       { size: 'small', hasPrefixIcon: false, class: 'ps-2' },
       { size: 'normal', hasPrefixIcon: false, class: 'ps-2.5' },
       { size: 'large', hasPrefixIcon: false, class: 'ps-4' },
-
-      { size: 'small', hasSuffixIcon: false, class: 'pe-2' },
-      { size: 'normal', hasSuffixIcon: false, class: 'pe-2.5' },
-      { size: 'large', hasSuffixIcon: false, class: 'pe-4' },
     ],
     defaultVariants: {
       size: 'normal',
       hasPrefixIcon: false,
-      hasSuffixIcon: false,
     },
   }
 );
