@@ -10,44 +10,52 @@ interface TextfieldProps {
   className?: string;
   size?: WrapperVariant['size'];
   isError?: WrapperVariant['isError'];
+  disabled?: boolean;
   prefixIcon?: IconType;
   suffixIcon?: IconType;
 }
 
-const Textfield: React.FC<TextfieldProps> = ({
-  size,
-  isError = false,
-  className = '',
-  prefixIcon: PrefixIcon,
-  suffixIcon: SuffixIcon,
-}) => {
-  return (
-    <div
-      className={cn(
-        wrapperVariant({
-          size,
-          isError,
-        }),
-        className
-      )}
-    >
-      {PrefixIcon && (
-        <div className="h-full px-2">{<PrefixIcon size={14} />}</div>
-      )}
-      <input
+const Textfield = React.forwardRef<HTMLInputElement, TextfieldProps>(
+  ({
+    size,
+    prefixIcon: PrefixIcon,
+    suffixIcon: SuffixIcon,
+    isError = false,
+    disabled = false,
+    className = '',
+    ...props
+  }) => {
+    return (
+      <div
         className={cn(
-          inputVariant({
+          wrapperVariant({
             size,
-            hasPrefixIcon: !!PrefixIcon,
-            hasSuffixIcon: !!SuffixIcon,
-          })
+            isError,
+            disabled,
+          }),
+          className
         )}
-      />
-      {SuffixIcon && (
-        <div className="h-full px-2">{<SuffixIcon size={14} />}</div>
-      )}
-    </div>
-  );
-};
+      >
+        {PrefixIcon && (
+          <div className="h-full px-2">{<PrefixIcon size={14} />}</div>
+        )}
+        <input
+          className={cn(
+            inputVariant({
+              size,
+              hasPrefixIcon: !!PrefixIcon,
+              hasSuffixIcon: !!SuffixIcon,
+            })
+          )}
+          disabled={disabled}
+          {...props}
+        />
+        {SuffixIcon && (
+          <div className="h-full px-2">{<SuffixIcon size={14} />}</div>
+        )}
+      </div>
+    );
+  }
+);
 
 export default Textfield;

@@ -13,10 +13,15 @@ export const wrapperVariant = cva(
         false: 'border-gray-400 focus-within:border-gray-500',
         true: 'border-red-500',
       },
+      disabled: {
+        true: 'bg-neutral-200 cursor-not-allowed',
+        false: '',
+      },
     },
     defaultVariants: {
       size: 'normal',
       isError: false,
+      disabled: false,
     },
   }
 );
