@@ -73,7 +73,7 @@ const Passwordfield = React.forwardRef<HTMLInputElement, PasswordfieldProps>(
           {...props}
         />
         <div className="h-full px-2 cursor-pointer" onClick={handleChangeType}>
-          {type === 'text' ? (
+          {type === 'password' ? (
             <LuEye
               className={cn(iconVariants({ size: inputSize, error: isError }))}
               size={14}
