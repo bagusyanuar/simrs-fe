@@ -1,9 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { AuthRoutes } from '@/presentation/router/modules';
+import { AuthRoutes, DashboardRoutes } from '@/presentation/router/modules';
 
 export const appRouter = createBrowserRouter([
   {
     path: '',
-    children: [...AuthRoutes],
+    children: [...AuthRoutes, ...DashboardRoutes],
   },
 ]);
