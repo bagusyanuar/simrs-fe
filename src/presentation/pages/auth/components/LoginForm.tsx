@@ -2,6 +2,7 @@ import React from 'react';
 import { LuMail, LuLock } from 'react-icons/lu';
 import { Textfield } from '@/presentation/components/ui/textfield';
 import { Passwordfield } from '@/presentation/components/ui/passwordfield';
+import { Checkbox } from '@/presentation/components/ui/checkbox';
 
 const LoginForm: React.FC = () => {
   return (
@@ -16,7 +17,7 @@ const LoginForm: React.FC = () => {
           </p>
         </header>
       </div>
-      <div className="flex-1 flex flex-col justify-center gap-3.5">
+      <div className="flex-1 flex flex-col justify-center gap-3.5 mb-5">
         <div className="space-y-1.5">
           <label className="text-xs font-semibold text-slate-500 flex items-center gap-1">
             <LuMail size={14} />
@@ -39,6 +40,7 @@ const LoginForm: React.FC = () => {
           </div>
           <Passwordfield placeholder="Password" />
         </div>
+        <Checkbox inputSize="small" label="Keep me signed in" />
       </div>
     </section>
   );
