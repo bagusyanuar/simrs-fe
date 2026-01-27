@@ -1,4 +1,5 @@
 import React from 'react';
+import BrandLogo from '@/assets/images/logo.png';
 
 interface SidebarProps {
   children?: React.ReactNode;
@@ -8,7 +9,9 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
   return (
     <aside className="fixed z-30 w-64 h-dvh bg-white shadow-md border-r border-gray-300 flex flex-col py-4">
       <div className="w-full flex items-center gap-2 px-6">
-        <div className="w-8 h-8 rounded-md bg-primary-500"></div>
+        <div className="w-8 h-8 rounded-md bg-primary-500 flex items-center justify-center">
+          <img src={BrandLogo} alt="brand-logo" className="w-7 h-7" />
+        </div>
         <h1 className="text-lg font-black text-slate-700">MEDIFLOW</h1>
       </div>
       <div className="px-6 my-5">

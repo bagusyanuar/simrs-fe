@@ -12,27 +12,31 @@ import {
   LuStethoscope,
   LuPill,
 } from 'react-icons/lu';
-import BrandLogo from '@/assets/images/logo.png';
+
 
 export default function SIMRSLayout() {
   return (
-    <main className="w-full h-dvh flex">
-      <div className="w-18 h-dvh p-3 border-r border-slate-100">
-        <div className="w-full aspect-square rounded-xl">
-          <img src={BrandLogo} alt="brand-logo" className="w-12 h-12" />
-          <div className="flex flex-col gap-1 mt-5">
-            <div className="w-full aspect-square text-slate-500 flex items-center justify-center rounded-lg bg-slate-100">
-              <LuStethoscope size={18} />
-            </div>
-            <div className="w-full aspect-square text-slate-500 flex items-center justify-center rounded-lg">
-              <LuPill size={18} />
-            </div>
+    <main>
+      {/* <div className="w-18 h-dvh p-3 border-r border-slate-300 shadow-lg shadow-slate-300/20">
+        <div className="w-full aspect-square rounded-xl flex justify-center">
+          <img src={BrandLogo} alt="brand-logo" className="w-10 h-10" />
+        </div>
+        <div className="flex flex-col gap-1 mt-5 justify-center items-center">
+          <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-primary-500 shadow-lg shadow-primary-500/20">
+            <LuStethoscope size={16} className='text-white' />
+          </div>
+          <div className="w-12 h-12 text-slate-500 flex items-center justify-center rounded-lg">
+            <LuPill size={18} />
           </div>
         </div>
       </div>
-      <div className="w-64 h-dvh p-3 border-r border-slate-100"></div>
-      <div className="flex-1"></div>
-      {/* <Sidebar>
+      <div className="w-64 h-dvh p-3 border-r border-slate-300">
+        <div className='w-full'>
+          <h1>Medical Overview</h1>
+        </div>
+      </div>
+      <div className="flex-1"></div> */}
+      <Sidebar>
         <div className="text-xs text-slate-500 font-medium mb-3 tracking-widest">
           Menu Overview
         </div>
@@ -44,10 +48,10 @@ export default function SIMRSLayout() {
         />
         <SidebarTree label="Master Data" icon={LuFolderArchive} />
       </Sidebar>
-      <Navbar /> */}
-      {/* <Content>
+      <Navbar />
+      <Content>
         <Outlet />
-      </Content> */}
+      </Content>
     </main>
   );
 }
