@@ -16,7 +16,7 @@ export const sidebarItemVariants = cva(
 );
 
 export const sidebarTreeVariants = cva(
-  'flex items-center gap-2 px-3 py-2.5 text-sm rounded-md transition-colors ease-in-out duration-300 font-light cursonr-pointer',
+  'flex items-center gap-2 px-3 py-2.5 text-sm rounded-md transition-colors ease-in-out duration-300 font-light cursor-pointer',
   {
     variants: {
       isActive: {

@@ -12,13 +12,14 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
         <h1 className="text-lg font-black text-slate-700">MEDIFLOW</h1>
       </div>
       <div className="px-6 my-5">
-        <div className="w-full p-3 rounded-lg flex items-center gap-2 bg-gray-100 shadow-lg">
-          <div className="w-10 h-10 rounded-full">
+        <div className="w-full p-2 rounded-lg flex items-center gap-2 bg-slate-50 border border-slate-100">
+          <div className="w-10 h-10 rounded-lg relative">
             <img
               src="https://i.pravatar.cc/300"
               alt="avatar"
-              className="w-10 h-10 rounded-full object-center object-contain"
+              className="w-10 h-10 rounded-lg object-center object-contain"
             />
+            <div className="absolute h-2.5 w-2.5 rounded-full bg-emerald-500 -bottom-1.5 -right-1.5"></div>
           </div>
           <div className="flex-1 flex flex-col gap-0.5">
             <span className="text-xs text-slate-700 font-medium leading-none">
